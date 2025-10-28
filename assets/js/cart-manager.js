@@ -25,3 +25,18 @@ class CartManager {
     saveCart() {
         localStorage.setItem('bebeconfort_cart', JSON.stringify(this.cart));
     }
+    // Ajouter un produit au panier
+    addToCart(product) {
+        const existingProduct = this.cart.find(item => item.id === product.id);
+        
+        if (existingProduct) {
+            existingProduct.quantity += product.quantity || 1;
+        } else {
+            this.cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                quantity: product.quantity || 1
+            });
+        }
