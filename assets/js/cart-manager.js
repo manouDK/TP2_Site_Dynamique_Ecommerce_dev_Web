@@ -47,3 +47,27 @@ class CartManager {
         this.updateCartCount();
         this.showNotification('Produit ajouté au panier !');
     }
+
+    // Supprimer un produit du panier
+    removeFromCart(productId) {
+        this.cart = this.cart.filter(item => item.id !== productId);
+        this.saveCart();
+        this.updateCartDisplay();
+        this.updateCartCount();
+        this.showNotification('Produit retiré du panier', 'warning');
+    }
+
+    // Modifier la quantité d'un produit
+    updateQuantity(productId, newQuantity) {
+        const product = this.cart.find(item => item.id === productId);
+        if (product) {
+            if (newQuantity <= 0) {
+                this.removeFromCart(productId);
+            } else {
+                product.quantity = parseInt(newQuantity);
+                this.saveCart();
+                this.updateCartDisplay();
+                this.updateCartCount();
+            }
+        }
+    }
