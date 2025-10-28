@@ -274,3 +274,60 @@ class CartManager {
                 this.addToCart(product);
             });
         });
+
+        // Bouton "Ajouter au panier" dans les pages de détail
+        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const quantityInput = document.querySelector('input[type="number"]');
+                const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+                
+                const product = {
+                    id: 'prod_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                    name: document.querySelector('.info-principale h1, .product-name').textContent,
+                    price: this.parsePrice(document.querySelector('.prix, .product-price').textContent),
+                    image: document.querySelector('.image-principale, .product-image').src,
+                    quantity: quantity
+                };
+                
+                this.addToCart(product);
+            });
+        });
+
+        // Bouton "Commander Directement"
+        document.querySelectorAll('.btn-buy-now').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const quantityInput = document.querySelector('input[type="number"]');
+                const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+                
+                const product = {
+                    id: 'prod_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                    name: document.querySelector('.info-principale h1, .product-name').textContent,
+                    price: this.parsePrice(document.querySelector('.prix, .product-price').textContent),
+                    image: document.querySelector('.image-principale, .product-image').src,
+                    quantity: quantity
+                };
+                
+                this.addToCart(product);
+                
+                // Rediriger vers la page panier après un court délai
+                setTimeout(() => {
+                    window.location.href = '../../pages/panier/panier.html';
+                }, 500);
+            });
+        });
+
+        // Bouton "Procéder au paiement"
+        const checkoutBtn = document.querySelector('.checkout-btn');
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this.cart.length === 0) {
+                    alert('Votre panier est vide !');
+                    return;
+                }
+                this.showCheckoutForm();
+            });
+        }
+    }
