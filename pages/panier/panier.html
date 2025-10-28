@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 
 </head>
 <body>
-  <!-- ----- HEADER ----- -->
+  <!-- ----- HEADER ----- -
   
 
 <header>
@@ -143,7 +143,7 @@
 </main>
 
 
-    <!-- Footer -->
+    <!-- Footer 
     <footer class="site-footer">
     <div class="footer-content">
         <div class="footer-column">
@@ -206,6 +206,252 @@
         <h5>&copy; <strong>BébéConfort 2025 - Tous droits réservés</strong></h5>
     </div>
 </footer>
+
+</body>
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Panier - BÉBÉCONFORT</title>
+  <link rel="stylesheet" href="../../assets/css/panier.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+<header>
+    <div class="top-nav">
+        <a href="../../index.html" class="logo">BÉBÉCONFORT</a>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Que recherchez-vous ?" aria-label="Rechercher">
+            <button aria-label="Lancer la recherche"><i class="fa fa-search"></i></button>
+        </div>
+
+        <div class="account-cart">
+            <a href="../../pages/connexion/connexion.html"><i class="fa fa-user"></i> Mon Compte</a>
+            <a href="../../pages/panier/panier.html"><i class="fa fa-shopping-cart"></i> Panier</a>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <span class="menu-icon" aria-label="Menu" role="button" tabindex="0">
+            <i class="fa fa-bars"></i>
+        </span>
+        <div class="menu-dropdown">
+            <a href="../../index.html">Accueil</a>
+            <div class="category-dropdown">
+                <a href="#" class="dropdown-trigger">Catégories <i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="../../pages/vêtements/pageCategorieVetement.html">Vêtements</a>
+                    <a href="../../pages/alimentation/alimentation.html">Alimentation</a>
+                    <a href="../../pages/accessoires/accessoires.html">Accessoires</a>
+                    <a href="../../pages/chaussures/chaussures.html">Chaussures</a>
+                    <a href="../../pages/textile_de_maternité/textile.html">Textile de Maternité</a>
+                    <a href="../../pages/poussettes/pouset.html">Poussettes</a>
+                    <a href="../../pages/amenagement_de_chambre/amenagement.html">Aménagement de La chambre</a>
+                </div>
+            </div>
+            <a href="#">À propos</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h1 style="margin-bottom: 30px; color: #2268ff;">
+            <i class="fa fa-shopping-cart"></i> Mon Panier
+        </h1>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+            <thead>
+                <tr style="background: #f8f9fa; border-bottom: 2px solid #2268ff;">
+                    <th style="padding: 15px; text-align: left;">Produit</th>
+                    <th style="padding: 15px; text-align: left;">Prix unitaire</th>
+                    <th style="padding: 15px; text-align: center;">Quantité</th>
+                    <th style="padding: 15px; text-align: left;">Sous-total</th>
+                    <th style="padding: 15px; text-align: center;">Action</th>
+                </tr>
+            </thead>
+            <tbody class="cart-items-body">
+                <!-- Les produits seront insérés ici par JavaScript -->
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 40px;">
+                        <p style="font-size: 18px; color: #666;">Chargement du panier...</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 30px;">
+            <div style="flex: 1; min-width: 300px;">
+                <div class="customer-note" style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #2268ff; margin-bottom: 15px;">
+                        <i class="fa fa-sticky-note"></i> Note pour la commande
+                    </h3>
+                    <textarea id="order-notes" placeholder="Instructions spéciales pour la livraison (optionnel)" 
+                              style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; min-height: 100px; font-size: 14px;"></textarea>
+                </div>
+            </div>
+            
+            <div style="flex: 1; min-width: 300px;">
+                <div class="cart-totals" style="background: #f8f9fa; padding: 25px; border-radius: 8px; border: 2px solid #2268ff;">
+                    <!-- Les totaux seront insérés ici par JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-section" style="margin-bottom: 30px;">
+            <h3 style="color: #2268ff; margin-bottom: 20px;">
+                <i class="fa fa-credit-card"></i> Méthode de Paiement
+            </h3>
+            <div class="payment-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div class="payment-option" data-payment="orange-money" style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;">
+                    <div class="payment-image" style="margin-bottom: 10px;">
+                        <img src="../../assets/images/images_index/orange-money-logo-png_seeklogo-440383.png" 
+                             alt="Orange Money" style="height: 40px; object-fit: contain;">
+                    </div>
+                    <h4 style="margin: 10px 0; font-size: 16px;">Orange Money</h4>
+                    <p style="font-size: 13px; color: #666; margin: 0;">Paiement mobile</p>
+                </div>
+                <div class="payment-option" data-payment="mtn-momo" style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;">
+                    <div class="payment-image" style="margin-bottom: 10px;">
+                        <img src="../../assets/images/images_index/mtn-mobile-money-logo.jpg" 
+                             alt="MTN MoMo" style="height: 40px; object-fit: contain;">
+                    </div>
+                    <h4 style="margin: 10px 0; font-size: 16px;">MTN MoMo</h4>
+                    <p style="font-size: 13px; color: #666; margin: 0;">Paiement mobile</p>
+                </div>
+                <div class="payment-option" data-payment="paypal" style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;">
+                    <div class="payment-image" style="margin-bottom: 10px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" 
+                             alt="PayPal" style="height: 40px; object-fit: contain;">
+                    </div>
+                    <h4 style="margin: 10px 0; font-size: 16px;">PayPal</h4>
+                    <p style="font-size: 13px; color: #666; margin: 0;">Paiement sécurisé</p>
+                </div>
+                <div class="payment-option" data-payment="cash" style="background: white; border: 2px solid #ddd; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.3s;">
+                    <div class="payment-image" style="margin-bottom: 10px;">
+                        <i class="fa fa-money-bill-wave" style="font-size: 40px; color: #2268ff;"></i>
+                    </div>
+                    <h4 style="margin: 10px 0; font-size: 16px;">Cash</h4>
+                    <p style="font-size: 13px; color: #666; margin: 0;">Paiement à la livraison</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="checkout-btn" style="background: linear-gradient(135deg, #2268ff 0%, #1557d0 100%); color: white; border: none; padding: 18px 50px; font-size: 18px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: transform 0.2s;">
+                <i class="fa fa-check-circle"></i> PROCÉDER AU PAIEMENT
+            </button>
+            <br>
+            <a href="../../index.html" style="display: inline-block; margin-top: 20px; color: #2268ff; text-decoration: none; font-weight: 600;">
+                <i class="fa fa-arrow-left"></i> Continuer mes achats
+            </a>
+        </div>
+        
+        <div class="note" style="background: #e7f3ff; padding: 20px; border-radius: 8px; margin-top: 40px; border-left: 4px solid #2268ff;">
+            <h4 style="color: #2268ff; margin-bottom: 10px;">
+                <i class="fa fa-info-circle"></i> Informations importantes
+            </h4>
+            <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                <li>Livraison gratuite pour les commandes de 100 000 FCFA et plus</li>
+                <li>Délai de livraison : 24-48h pour Yaoundé et Douala</li>
+                <li>Paiement sécurisé et garanti</li>
+                <li>Retour gratuit sous 14 jours</li>
+                <li>Service client disponible 7j/7</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <h4>Service Client</h4>
+            <ul>
+                <li><a href="#">Centre D'aide</a></li>
+                <li><a href="#">Votre compte</a></li>
+                <li><a href="#">Vos Commandes</a></li>
+                <li><a href="#">Comment Payer</a></li>
+                <li><a href="#">Comment Acheter</a></li>
+                <li><a href="#">Contactez Nous</a></li>
+                <li><a href="#">Mentions Légales</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>Liens Utiles</h4>
+            <ul>
+                <li><a href="../../pages/vêtements/pageCategorieVetement.html">Vêtements</a></li>
+                <li><a href="../../pages/accessoires/accessoires.html">Accessoires</a></li>
+                <li><a href="../../pages/chaussures/chaussures.html">Chaussures</a></li>
+                <li><a href="../../pages/amenagement_de_chambre/amenagement.html">Aménagement de La chambre</a></li>
+                <li><a href="../../pages/alimentation/alimentation.html">Alimentation</a></li>
+                <li><a href="../../pages/couches_et_lingettes/couche_lingette.html">Couches et Lingettes</a></li>
+                <li><a href="../../pages/textile_de_maternité/textile.html">Textile de Maternité</a></li>
+                <li><a href="../../pages/poussettes/pouset.html">Poussettes</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>A propos</h4>
+            <ul>
+                <li><a href="#">Qui Sommes Nous</a></li>
+                <li><a href="#">Carrière</a></li>
+                <li><a href="#">Conditions Générales</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h4>Methode De paiement</h4>
+            <div class="payment-methods">
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" class="footer-payment-logo"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="footer-payment-logo"></a>
+                <a href="#"><img src="../../assets/images/images_index/téléchargement.png" alt="American Express" class="footer-payment-logo"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="footer-payment-logo"></a>
+                <a href="#"><img src="../../assets/images/images_index/mtn-mobile-money-logo.jpg" alt="Mtn Money" class="footer-payment-logo"></a>
+                <a href="#"><img src="../../assets/images/images_index/orange-money-logo-png_seeklogo-440383.png" alt="orange money" class="footer-payment-logo"></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4>Réseaux Sociaux</h4>
+            <ul>
+                <li><a href="#"><img src="../../assets/images/images_index/facebook.jpg" alt="Facebook" class="social-logo"></a></li>
+                <li><a href="#"><img src="../../assets/images/images_index/instagram.jpg" alt="Instagram" class="social-logo"></a></li>
+                <li><a href="#"><img src="../../assets/images/images_index/twitter.png" alt="Twitter" class="social-logo"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <h5>&copy; <strong>BébéConfort 2025 - Tous droits réservés</strong></h5>
+    </div>
+</footer>
+
+<!-- Script JavaScript pour le panier -->
+<script src="../../assets/js/cart-manager.js"></script>
+
+<script>
+    // Gérer la sélection de la méthode de paiement
+    document.querySelectorAll('.payment-option').forEach(option => {
+        option.addEventListener('click', function() {
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.style.borderColor = '#ddd';
+                opt.style.background = 'white';
+            });
+            this.style.borderColor = '#2268ff';
+            this.style.background = '#e7f3ff';
+        });
+    });
+</script>
 
 </body>
 </html>
