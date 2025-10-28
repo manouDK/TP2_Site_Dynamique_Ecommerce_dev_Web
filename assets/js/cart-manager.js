@@ -71,3 +71,21 @@ class CartManager {
             }
         }
     }
+
+    // Calculer le sous-total
+    calculateSubtotal() {
+        return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    // Calculer les frais de livraison
+    calculateShippingFee() {
+        const subtotal = this.calculateSubtotal();
+        if (subtotal === 0) return 0;
+        if (subtotal >= 100000) return 0; // Livraison gratuite au-dessus de 100 000 FCFA
+        return 5000;
+    }
+
+    // Calculer le total
+    calculateTotal() {
+        return this.calculateSubtotal() + this.calculateShippingFee();
+    }
