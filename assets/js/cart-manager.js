@@ -331,3 +331,142 @@ class CartManager {
             });
         }
     }
+
+    // Parser le prix depuis le texte
+    parsePrice(priceText) {
+        return parseInt(priceText.replace(/[^\d]/g, ''));
+    }
+
+    // Afficher une notification
+    showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: ${type === 'success' ? '#28a745' : '#ffc107'};
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            font-weight: 600;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Afficher le formulaire de commande
+    showCheckoutForm() {
+        const modal = document.createElement('div');
+        modal.className = 'checkout-modal';
+        modal.innerHTML = `
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Finaliser la commande</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <form id="checkout-form" class="checkout-form">
+                    <div class="form-group">
+                        <label for="fullname">Nom complet *</label>
+                        <input type="text" id="fullname" name="fullname" required 
+                               placeholder="Ex: Jean Dupont">
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="Ex: jean.dupont@email.com">
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Téléphone *</label>
+                        <input type="tel" id="phone" name="phone" required 
+                               placeholder="Ex: +237 6 XX XX XX XX">
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Adresse de livraison *</label>
+                        <textarea id="address" name="address" required rows="3" 
+                                  placeholder="Ville, Quartier, Rue..."></textarea>
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="payment">Méthode de paiement *</label>
+                        <select id="payment" name="payment" required>
+                            <option value="">Sélectionner une méthode</option>
+                            <option value="orange-money">Orange Money</option>
+                            <option value="mtn-momo">MTN Mobile Money</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="cash">Paiement à la livraison</option>
+                        </select>
+                        <span class="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Notes (optionnel)</label>
+                        <textarea id="notes" name="notes" rows="2" 
+                                  placeholder="Instructions spéciales pour la livraison..."></textarea>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h3>Récapitulatif</h3>
+                        <p><strong>Total à payer:</strong> ${this.formatPrice(this.calculateTotal())}</p>
+                        <p style="font-size: 14px; color: #666;">Articles: ${this.cart.length} | Quantité totale: ${this.cart.reduce((sum, item) => sum + item.quantity, 0)}</p>
+                    </div>
+                    
+                    <button type="submit" class="submit-order-btn">
+                        Confirmer la commande
+                    </button>
+                </form>
+            </div>
+        `;
+        
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        document.body.appendChild(modal);
+        document.body.style.overflow = 'hidden';
+        
+        // Styles pour le modal
+        this.addCheckoutStyles();
+        
+        // Fermer le modal
+        modal.querySelector('.close-modal').addEventListener('click', () => {
+            modal.remove();
+            document.body.style.overflow = 'auto';
+        });
+        
+        modal.querySelector('.modal-overlay').addEventListener('click', () => {
+            modal.remove();
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Gérer la soumission du formulaire
+        modal.querySelector('#checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.processOrder(new FormData(e.target));
+        });
+    }
