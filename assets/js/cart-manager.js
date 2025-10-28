@@ -470,3 +470,307 @@ class CartManager {
             this.processOrder(new FormData(e.target));
         });
     }
+
+
+    // Ajouter les styles pour le formulaire de commande
+    addCheckoutStyles() {
+        if (document.getElementById('checkout-styles')) return;
+        
+        const style = document.createElement('style');
+        style.id = 'checkout-styles';
+        style.textContent = `
+            .modal-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+            }
+            
+            .modal-content {
+                position: relative;
+                background: white;
+                max-width: 600px;
+                width: 90%;
+                max-height: 90vh;
+                overflow-y: auto;
+                border-radius: 12px;
+                padding: 30px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            }
+            
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 25px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #f0f0f0;
+            }
+            
+            .modal-header h2 {
+                margin: 0;
+                color: #2268ff;
+            }
+            
+            .close-modal {
+                background: none;
+                border: none;
+                font-size: 32px;
+                cursor: pointer;
+                color: #666;
+                padding: 0;
+                width: 32px;
+                height: 32px;
+                line-height: 1;
+            }
+            
+            .close-modal:hover {
+                color: #ff4444;
+            }
+            
+            .checkout-form .form-group {
+                margin-bottom: 20px;
+            }
+            
+            .checkout-form label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: #333;
+            }
+            
+            .checkout-form input,
+            .checkout-form textarea,
+            .checkout-form select {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #ddd;
+                border-radius: 6px;
+                font-size: 15px;
+                transition: border-color 0.3s;
+            }
+            
+            .checkout-form input:focus,
+            .checkout-form textarea:focus,
+            .checkout-form select:focus {
+                outline: none;
+                border-color: #2268ff;
+            }
+            
+            .checkout-form .error-message {
+                display: block;
+                color: #ff4444;
+                font-size: 13px;
+                margin-top: 5px;
+                min-height: 18px;
+            }
+            
+            .order-summary {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin: 25px 0;
+            }
+            
+            .order-summary h3 {
+                margin-top: 0;
+                color: #2268ff;
+            }
+            
+            .submit-order-btn {
+                width: 100%;
+                padding: 15px;
+                background: linear-gradient(135deg, #2268ff 0%, #1557d0 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+            
+            .submit-order-btn:hover {
+                transform: scale(1.02);
+            }
+            
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        
+        document.head.appendChild(style);
+    }
+
+    // Traiter la commande
+    processOrder(formData) {
+        // Validation côté client
+        const errors = this.validateForm(formData);
+        
+        if (errors.length > 0) {
+            errors.forEach(error => {
+                const input = document.getElementById(error.field);
+                const errorSpan = input.parentElement.querySelector('.error-message');
+                errorSpan.textContent = error.message;
+                input.style.borderColor = '#ff4444';
+            });
+            return;
+        }
+        
+        // Créer l'objet de commande
+        const order = {
+            id: 'CMD-' + Date.now(),
+            date: new Date().toLocaleString('fr-FR'),
+            customer: {
+                name: formData.get('fullname'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                address: formData.get('address')
+            },
+            items: this.cart,
+            payment: formData.get('payment'),
+            notes: formData.get('notes'),
+            subtotal: this.calculateSubtotal(),
+            shipping: this.calculateShippingFee(),
+            total: this.calculateTotal()
+        };
+        
+        // Simuler l'envoi de la commande
+        this.submitOrder(order);
+    }
+
+    // Valider le formulaire
+    validateForm(formData) {
+        const errors = [];
+        
+        // Nom complet
+        const fullname = formData.get('fullname').trim();
+        if (fullname.length < 3) {
+            errors.push({ field: 'fullname', message: 'Le nom doit contenir au moins 3 caractères' });
+        }
+        
+        // Email
+        const email = formData.get('email').trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errors.push({ field: 'email', message: 'Email invalide' });
+        }
+        
+        // Téléphone
+        const phone = formData.get('phone').trim();
+        if (phone.length < 9) {
+            errors.push({ field: 'phone', message: 'Numéro de téléphone invalide' });
+        }
+        
+        // Adresse
+        const address = formData.get('address').trim();
+        if (address.length < 10) {
+            errors.push({ field: 'address', message: 'Veuillez fournir une adresse complète' });
+        }
+        
+        // Méthode de paiement
+        const payment = formData.get('payment');
+        if (!payment) {
+            errors.push({ field: 'payment', message: 'Veuillez sélectionner une méthode de paiement' });
+        }
+        
+        return errors;
+    }
+
+    // Soumettre la commande (simulation)
+    submitOrder(order) {
+        // Afficher un loader
+        const submitBtn = document.querySelector('.submit-order-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Traitement en cours...';
+        submitBtn.disabled = true;
+        
+        // Simuler un délai de traitement
+        setTimeout(() => {
+            // Sauvegarder la commande dans localStorage
+            const orders = JSON.parse(localStorage.getItem('bebeconfort_orders') || '[]');
+            orders.push(order);
+            localStorage.setItem('bebeconfort_orders', JSON.stringify(orders));
+            
+            // Vider le panier
+            this.cart = [];
+            this.saveCart();
+            this.updateCartDisplay();
+            this.updateCartCount();
+            
+            // Fermer le modal
+            document.querySelector('.checkout-modal').remove();
+            document.body.style.overflow = 'auto';
+            
+            // Afficher le message de confirmation
+            this.showOrderConfirmation(order);
+        }, 2000);
+    }
+
+    // Afficher la confirmation de commande
+    showOrderConfirmation(order) {
+        const confirmModal = document.createElement('div');
+        confirmModal.className = 'confirmation-modal';
+        confirmModal.innerHTML = `
+            <div class="modal-overlay"></div>
+            <div class="modal-content" style="text-align: center; max-width: 500px;">
+                <div style="font-size: 64px; color: #28a745; margin-bottom: 20px;">✓</div>
+                <h2 style="color: #28a745; margin-bottom: 15px;">Commande confirmée !</h2>
+                <p style="font-size: 16px; margin-bottom: 10px;">
+                    Merci pour votre commande <strong>${order.customer.name}</strong>
+                </p>
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                    Numéro de commande: <strong>${order.id}</strong>
+                </p>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <p style="margin: 5px 0;"><strong>Total:</strong> ${this.formatPrice(order.total)}</p>
+                    <p style="margin: 5px 0; font-size: 14px; color: #666;">
+                        Un email de confirmation a été envoyé à ${order.customer.email}
+                    </p>
+                </div>
+                <button class="btn-home" 
+                        style="width: 100%; padding: 15px; background: #2268ff; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 10px;">
+                    Retour à l'accueil
+                </button>
+            </div>
+        `;
+        
+        confirmModal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        document.body.appendChild(confirmModal);
+        
+        confirmModal.querySelector('.btn-home').addEventListener('click', () => {
+            window.location.href = '../../index.html';
+        });
+    }
+}
