@@ -774,3 +774,8 @@ class CartManager {
         });
     }
 }
+
+// Initialiser le gestionnaire de panier au chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+    window.cartManager = new CartManager();
+});
