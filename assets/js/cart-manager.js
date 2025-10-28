@@ -176,3 +176,60 @@ class CartManager {
             cartTotalsDiv.innerHTML = totalsHTML;
         }
     }
+
+
+    // Attacher les événements aux éléments du panier
+    attachCartItemEvents() {
+        // Événements pour les boutons de suppression
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const productId = e.currentTarget.dataset.productId;
+                if (confirm('Voulez-vous vraiment retirer cet article du panier ?')) {
+                    this.removeFromCart(productId);
+                }
+            });
+        });
+
+        // Événements pour les inputs de quantité
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const productId = e.target.dataset.productId;
+                const newQuantity = parseInt(e.target.value);
+                this.updateQuantity(productId, newQuantity);
+            });
+        });
+    }
+
+    // Mettre à jour le compteur du panier dans le header
+    updateCartCount() {
+        const cartCount = this.cart.reduce((total, item) => total + item.quantity, 0);
+        const cartLinks = document.querySelectorAll('.account-cart a[href*="panier"]');
+        
+        cartLinks.forEach(link => {
+            // Retirer l'ancien badge s'il existe
+            const oldBadge = link.querySelector('.cart-badge');
+            if (oldBadge) oldBadge.remove();
+            
+            // Ajouter le nouveau badge si le panier n'est pas vide
+            if (cartCount > 0) {
+                const badge = document.createElement('span');
+                badge.className = 'cart-badge';
+                badge.textContent = cartCount;
+                badge.style.cssText = `
+                    position: absolute;
+                    top: -8px;
+                    right: -8px;
+                    background: #ff4444;
+                    color: white;
+                    border-radius: 50%;
+                    padding: 2px 6px;
+                    font-size: 11px;
+                    font-weight: bold;
+                    min-width: 18px;
+                    text-align: center;
+                `;
+                link.style.position = 'relative';
+                link.appendChild(badge);
+            }
+        });
+    }
