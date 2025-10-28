@@ -233,3 +233,44 @@ class CartManager {
             }
         });
     }
+
+    // Attacher les écouteurs d'événements
+    attachEventListeners() {
+        // Boutons "Ajouter au panier" dans les pages de produits
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const productCard = e.target.closest('.product-card');
+                
+                if (productCard) {
+                    const product = {
+                        id: 'prod_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                        name: productCard.querySelector('.product-name').textContent,
+                        price: this.parsePrice(productCard.querySelector('.product-price').textContent),
+                        image: productCard.querySelector('.product-image').src,
+                        quantity: 1
+                    };
+                    
+                    this.addToCart(product);
+                }
+            });
+        });
+
+        // Bouton "Ajouter au panier" dans les pages de détail
+        document.querySelectorAll('.btn-add-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const quantityInput = document.querySelector('input[type="number"]');
+                const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
+                
+                const product = {
+                    id: 'prod_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                    name: document.querySelector('.info-principale h1, .product-name').textContent,
+                    price: this.parsePrice(document.querySelector('.prix, .product-price').textContent),
+                    image: document.querySelector('.image-principale, .product-image').src,
+                    quantity: quantity
+                };
+                
+                this.addToCart(product);
+            });
+        });
