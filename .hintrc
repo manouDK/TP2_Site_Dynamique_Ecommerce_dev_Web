@@ -6,6 +6,12 @@
     "disown-opener": "off",
     "no-inline-styles": "off",
     "meta-viewport": "off",
-    "no-protocol-relative-urls": "off"
+    "no-protocol-relative-urls": "off",
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
+    ]
   }
 }
