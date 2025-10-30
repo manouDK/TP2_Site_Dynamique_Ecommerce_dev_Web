@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const quantite = parseInt(quantiteInput.value) || 1;
 
     // Nettoyage du prix (supprimer "FCFA" et espaces)
-    const prix = parseFloat(prixText.replace(/[^\d.]/g, ""));
+    const prix = parseFloat(prixText.replace(/[^\d.]/g, ""))*1000;
 
     // Vérifie que la fonction existe
     if (typeof addArticle === "function") {
