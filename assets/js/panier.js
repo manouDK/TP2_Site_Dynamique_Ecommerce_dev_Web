@@ -1,4 +1,4 @@
-/* récupérer les articles sous la forme: {id:num_id,name:"produit1",quantite:nom_qte,price:prix} */
+/* récupérer les articles sous la forme: {id:num_id,nom:"produit1",prix:prix_qrticle,quantite:nom_qte} */
 
 function savePanier(panier){
     localStorage.setItem("panier",JSON.stringify(panier));
@@ -18,11 +18,10 @@ function getPanier(){
 function addArticle(article){
     let panier=getPanier();
     //on vérifie si l'objet est dans le panier et on augmente sa quantité
-    let foundArticle=panier.find(p=>p.name==article.name);
+    let foundArticle=panier.find(p=>p.nom==article.nom);
     if(foundArticle!=undefined){
-        foundArticle.quantite++;
+        foundArticle.quantite+=article.quantite;
     }else{
-        article.qte=1;
         panier.push(article);
     }
     savePanier(panier);
@@ -31,23 +30,22 @@ function addArticle(article){
 
 function removeFromPanier(article){
     let panier=getPanier();
-    panier=panier.filter(p=>p.name!=article.name);
+    panier=panier.filter(p=>p.nom!=article.nom);
     savePanier(panier);
 }
 
 function changeQuantity(article,quantite){
     let panier=getPanier();
-    let foundArticle=panier.find(p=>p.name==article.name);
+    let foundArticle=panier.find(p=>p.nom==article.nom);
     if(foundArticle!==undefined){
         if (quantite<= 0) {
             // Supprimer l'article si la quantité devient 0 ou négative
-            removeFromPanier(articleName);
+            removeFromPanier(article);
         }
         else{
             foundArticle.quantite=quantite;
             savePanier(panier);
-            // Rafraîchir l'affichage
-            displayPanier(); 
+
         }
     }
 }
@@ -56,7 +54,7 @@ function getNumberArticle(){
     let panier=getPanier();
     let number=0;
     for(let article of panier){
-        number+=article.quantite
+        number+=1
     }
     return number;
 }
@@ -65,7 +63,7 @@ function getTotalPrice(){
     let panier=getPanier();
     let total=0;
     for(let article of panier){
-        total+=article.price*article.quantite
+        total+=article.prix*article.quantite
     }
     return total;
 }
@@ -74,133 +72,180 @@ function getTotalPrice(){
 /*Partie ajoutée dans le code */
 
 
-function displayPanier() {
-    const panier = getPanier();
-    const container = document.querySelector('.container');
+function increaseQuantity(articleName) {
+    let panier = getPanier();
+    let article = panier.find(p => p.nom === articleName.nom);
+    if (article) {
+        changeQuantity(article, article.quantite + 1);
+    }
+}
+
+function decreaseQuantity(articleName) {
+    let panier = getPanier();
+    let article = panier.find(p => p.nom === articleName.nom);
+    if (article) {
+        changeQuantity(article, article.quantite-1);
+    }
+}
+
+function getNumberArticleEffectif(){
+    let panier=getPanier();
+    let number=0;
+    for(let article of panier){
+        number+=article.quantite
+    }
+    return number;
+}
+
+function drawPanier() {
+    let panier = getPanier();
+    let tbody = document.querySelector('table tbody');
+    
+    // Si le tableau n'existe pas sur cette page, on ne fait rien
+    if (!tbody) {
+        return;
+    }
+    
+    // Vider le contenu actuel du tableau
+    tbody.innerHTML = '';
     
     // Si le panier est vide
     if (panier.length === 0) {
-        container.innerHTML = `
-            <h1>Panier d'Achat</h1>
-            <div class="empty-cart-message">
-                <p>Votre panier est vide</p>
-                <a href="../../index.html" class="continue-shopping">Continuer vos achats</a>
-            </div>
-        `;
-        return;
-    }
-
-    // Calcul des totaux
-    const sousTotal = getTotalPrice();
-    const fraisLivraison = 5000;
-    const total = sousTotal + fraisLivraison;
-
-    // Génération du HTML du panier
-    let cartHTML = `
-        <h1>Panier d'Achat</h1>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Produit</th>
-                    <th>Prix</th>
-                    <th>Quantité</th>
-                    <th>Sous-total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    // Ajout de chaque article
-    panier.forEach(article => {
-        const articleSousTotal = article.price * article.quantite;
-        cartHTML += `
+        tbody.innerHTML = `
             <tr>
-                <td>${article.name}</td>
-                <td>${article.price.toLocaleString()} FCFA</td>
-                <td>
-                    <div class="quantity-controls">
-                        <button class="quantity-btn minus" onclick="changeQuantity('${article.name}', ${article.quantite - 1})">-</button>
-                        <span class="quantity-display">${article.quantite}</span>
-                        <button class="quantity-btn plus" onclick="changeQuantity('${article.name}', ${article.quantite + 1})">+</button>
-                    </div>
-                </td>
-                <td>${articleSousTotal.toLocaleString()} FCFA</td>
-                <td>
-                    <button class="remove-btn" onclick="removeFromPanierByName('${article.name}')">
-                        <i class="fas fa-trash"></i> Supprimer
-                    </button>
+                <td colspan="4" style="text-align: center; padding: 20px;">
+                    Votre panier est vide
                 </td>
             </tr>
         `;
+        updateTotals();
+        return;
+    }
+    
+    // Pour chaque article dans le panier
+    panier.forEach(article => {
+        let tr = document.createElement('tr');
+        let sousTotal = article.prix * article.quantite;
+        
+        // Dans la fonction drawPanier(), modifier cette partie :
+tr.innerHTML = `
+    <td>${article.nom}</td>
+    <td>${article.prix} FCFA</td>
+    <td>
+        <div class="quantity-controls">
+            <button class="quantity-btn minus" data-nom="${article.nom}">-</button>
+            <span class="quantity-display">${article.quantite}</span>
+            <button class="quantity-btn plus" data-nom="${article.nom}">+</button>
+        </div>
+    </td>
+    <td>
+        <button class="remove-btn icon-only" data-nom="${article.nom}" title="Supprimer l'article">
+            <i class="fa fa-trash"></i>
+        </button>
+    </td>
+`;
+        
+        tbody.appendChild(tr);
     });
+    
+    // Ajouter les écouteurs d'événements pour les boutons
+    attachEventListeners();
+    
+    // Mettre à jour les totaux
+    updateTotals();
+}
 
-    // Suite du HTML avec les totaux
-    cartHTML += `
-            </tbody>
-        </table>
-        
-        <div class="cart-totals">
-            <h3>Total du Panier</h3>
-            <div class="totals-row">
-                <span>Sous-total</span>
-                <span>${sousTotal.toLocaleString()} FCFA</span>
-            </div>
-            <div class="totals-row">
-                <span>Frais de livraison</span>
-                <span>${fraisLivraison.toLocaleString()} FCFA</span>
-            </div>
-            <div class="totals-row total-row">
-                <span>Total</span>
-                <span>${total.toLocaleString()} FCFA</span>
-            </div>
-        </div>
-        
-        <div class="customer-note">
-            <h3>Note pour la commande</h3>
-            <textarea placeholder="Ajoutez une note à votre commande (optionnel)"></textarea>
-        </div>
-        
-        <div class="payment-section">
-            <h3>Méthode de Paiement</h3>
-            <div class="payment-options">
-                <div class="payment-option selected">
-                    <div class="payment-image">
-                        <img src="../../assets/images/images_index/orange-money-logo-png_seeklogo-440383.png" alt="Orange Money" class="payment-logo-img">
-                    </div>
-                    <h4>Orange Money</h4>
-                    <p>Paiement rapide et sécurisé</p>
-                </div>
-                <div class="payment-option">
-                    <div class="payment-image">
-                        <img src="../../assets/images/images_index/mtn-mobile-money-logo.jpg" alt="MTN MoMo" class="payment-logo-img">
-                    </div>
-                    <h4>MTN MoMo</h4>
-                    <p>Paiement mobile facile</p>
-                </div>
-                <div class="payment-option">
-                    <div class="payment-image">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="payment-logo-img">
-                    </div>
-                    <h4>PayPal</h4>
-                    <p>Paiement international sécurisé</p>
-                </div>
-            </div>
-        </div>
-        
-        <button class="checkout-btn">PROCÉDER AU PAIEMENT</button>
-        
-        <div class="note">
-            <p>Informations pour le client</p>
-        </div>
-    `;
+function attachEventListeners() {
+    // Boutons pour augmenter la quantité
+    document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let nomArticle = this.getAttribute('data-nom');
+            let article = { nom: nomArticle };
+            increaseQuantity(article);
+            drawPanier(); // Redessiner le panier après modification
+        });
+    });
+    
+    // Boutons pour diminuer la quantité
+    document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let nomArticle = this.getAttribute('data-nom');
+            let article = { nom: nomArticle };
+            decreaseQuantity(article);
+            drawPanier(); // Redessiner le panier après modification
+        });
+    });
+    
+    // Boutons pour supprimer l'article
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            let nomArticle = this.getAttribute('data-nom');
+            let article = { nom: nomArticle };
+            removeFromPanier(article);
+            drawPanier(); // Redessiner le panier après suppression
+        });
+    });
+}
 
-    container.innerHTML = cartHTML;
+function updateTotals() {
+    let panier = getPanier();
+    let sousTotal = getTotalPrice(); // Cette fonction calcule le total des prix × quantités
+    let totalQuantity = getTotalQuantity(); // Cette fonction calcule la somme des quantités
+    let fraisLivraison = 5000;
+    let total = sousTotal + fraisLivraison;
+    
+    // Mettre à jour tous les éléments avec leurs IDs respectifs
+    const subtotalElement = document.getElementById('subtotal-amount');
+    const totalQuantityElement = document.getElementById('total-quantity');
+    const shippingElement = document.getElementById('shipping-amount');
+    const totalElement = document.getElementById('total-amount');
+    
+    if (subtotalElement) subtotalElement.textContent = sousTotal + ' FCFA';
+    if (totalQuantityElement) totalQuantityElement.textContent = totalQuantity + ' articles';
+    if (shippingElement) shippingElement.textContent = fraisLivraison + ' FCFA';
+    if (totalElement) totalElement.textContent = total + ' FCFA';
+}
+// Fonction pour vider complètement le panier
+function clearPanier() {
+    localStorage.removeItem("panier");
+    drawPanier();
+}
+
+// Initialisation sécurisée
+function initPanier() {
+    // Vérifier si nous sommes sur une page qui contient le tableau du panier
+    const table = document.querySelector('table');
+    if (!table) {
+        return; // Quitter si le tableau n'existe pas sur cette page
+    }
+    
+    drawPanier();
+}
+
+function safeInitPanier() {
+    // Vérifier si le DOM est déjà chargé
+    if (document.readyState === 'loading') {
+        // DOM pas encore chargé, attendre l'événement
+        document.addEventListener('DOMContentLoaded', initPanier);
+    } else {
+        // DOM déjà chargé, initialiser immédiatement
+        initPanier();
+    }
 }
 
 
-// Initialiser l'affichage du panier au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
-    displayPanier();
-});
+function getTotalQuantity() {
+    let panier = getPanier();
+    let totalQty = 0;
+    for(let article of panier){
+        totalQty += article.quantite;
+    }
+    return totalQty;
+}
+
+
+
+// Vérifier si nous sommes dans un environnement navigateur
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    safeInitPanier();
+}
