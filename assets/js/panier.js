@@ -38,9 +38,9 @@
 function changeQuantity(article,quantite){
     let panier=getPanier();
     //on vérifie si l'objet est dans le panier et on augmente sa quantité
-    let foundArticle=panier.find(p=>p.name==article.name);
+    let foundArticle=panier.find(p=>p.nom==article.nom);
     if(foundArticle!=undefined){
-        foundArticle.quantite++;
+        foundArticle.quantite+=article.quantite;
     }else{
         article.qte=1;
         panier.push(article);
@@ -66,8 +66,7 @@ function changeQuantity(article,quantite){
         else{
             foundArticle.quantite=quantite;
             savePanier(panier);
-            // Rafraîchir l'affichage
-            displayPanier(); 
+
         }
     }
 }
