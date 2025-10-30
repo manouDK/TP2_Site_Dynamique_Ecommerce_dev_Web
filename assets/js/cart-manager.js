@@ -29,7 +29,7 @@ class CartManager {
     // Ajouter un produit au panier
     addToCart(product) {
         const existingProduct = this.cart.find(item => item.id === product.id);
-        
+
         if (existingProduct) {
             existingProduct.quantity += product.quantity || 1;
         } else {
