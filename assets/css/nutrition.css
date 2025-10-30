@@ -426,10 +426,10 @@ main {
         }
 
         /* NOUVELLE RÈGLE CSS pour l'image elle-même */
-        .product-image .product-img {
+        .product-image .image-principale {
             /* 1. Assurez-vous que l'image remplisse 100% de la largeur et de la hauteur de son parent (.product-image) */
-            width: 100%;
-            height: 100%;
+            width: 95%;
+            height: 95%;
 
             /* 2. PROPRIÉTÉ CLÉ : Adapte l'image pour qu'elle couvre toute la zone,
             tout en préservant ses proportions. Les parties qui débordent seront coupées.
