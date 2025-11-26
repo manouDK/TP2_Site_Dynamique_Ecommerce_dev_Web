@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
+<!-- Script JavaScript pour le panier -->
+<script src="../../assets/js/cart-manager.js"></script>
+
+
 <body>
 
   <!-- ----- HEADER ----- -->
@@ -81,10 +85,21 @@
                     </ul>
                 </div>
 
-                <!-- Bouton d'achat -->
-                <a href="#" class="btn-achat">
-                    Ajouter au panier
-                </a>
+
+        <div class="detail-action-bar">
+            <input type="number" value="1" min="1" max="10" placeholder="Qté">
+                        
+                <button class="btn-add-cart">
+                            🧺 Ajouter au panier
+                </button>
+
+                <button class="btn-buy-now">
+                            🚀 Commander Directement
+                </button>
+        </div>
+
+
+
             </div>
         </div>
     </div>

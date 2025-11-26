@@ -455,6 +455,21 @@ header {
     .info-principale h1 {
         font-size: 1.5rem;
     }
+.add-to-cart {
+  padding: 8px;
+  background-color: #2268ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.add-to-cart:hover {
+  background-color: #ff5722;
+  transform: scale(1.05);
+}
 
     .prix {
         font-size: 2rem;
