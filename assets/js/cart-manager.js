@@ -275,24 +275,7 @@ class CartManager {
             });
         });
 
-        // Bouton "Ajouter au panier" dans les pages de détail
-        document.querySelectorAll('.btn-add-cart').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const quantityInput = document.querySelector('input[type="number"]');
-                const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-                
-                const product = {
-                    id: 'prod_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
-                    name: document.querySelector('.info-principale h1, .product-name').textContent,
-                    price: this.parsePrice(document.querySelector('.prix, .product-price').textContent),
-                    image: document.querySelector('.image-principale, .product-image').src,
-                    quantity: quantity
-                };
-                
-                this.addToCart(product);
-            });
-        });
+       
 
         // Bouton "Commander Directement"
         document.querySelectorAll('.btn-buy-now').forEach(btn => {

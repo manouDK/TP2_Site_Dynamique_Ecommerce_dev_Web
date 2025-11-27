@@ -1,39 +1,3 @@
-/* récupérer les articles sous la forme: {id:num_id,nom:"produit1",prix:prix_qrticle,quantite:nom_qte} */
-
-// function savePanier(panier){
-//     localStorage.setItem("panier",JSON.stringify(panier));
-// }
-
-// function getPanier(){
-//     let panier=localStorage.getItem("panier");
-//     if (panier==null){
-//         return [];
-//     }
-//     else{
-//         return JSON.parse(localStorage.getItem("panier"));
-//     }
-
-// }
-
-// function addArticle(article){
-//     let panier=getPanier();
-//     //on vérifie si l'objet est dans le panier et on augmente sa quantité
-//     let foundArticle=panier.find(p=>p.name==article.name);
-//     if(foundArticle!=undefined){
-//         foundArticle.quantite++;
-//     }else{
-//         article.qte=1;
-//         panier.push(article);
-//     }
-//     savePanier(panier);
-// }
-
-
-// function removeFromPanier(article){
-//     let panier=getPanier();
-//     panier=panier.filter(p=>p.name!=article.name);
-//     savePanier(panier);
-// }
 
 function changeQuantity(article,quantite){
     let panier=getPanier();
@@ -223,3 +187,5 @@ function displayPanier() {
 document.addEventListener('DOMContentLoaded', function() {
     displayPanier();
 });
+
+
