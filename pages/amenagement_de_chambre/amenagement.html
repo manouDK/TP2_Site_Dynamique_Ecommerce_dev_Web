@@ -12,6 +12,8 @@
 
 <!-- Script JavaScript pour le panier -->
 <script src="../../assets/js/cart-manager.js"></script>
+<script src="../../assets/js/filtres-amenagement.js"></script>
+
 
 
 
@@ -89,64 +91,184 @@
         </div>
 
         <!-- Filter Section -->
-        <div class="filter-section">
-            <h3>Filtrer les produits</h3>
-            <div class="filter-options">
-                <div class="filter-group">
-                    <label for="category">Catégorie</label>
-                    <select id="category">
-                        <option value="">Toutes les catégories</option>
-                        <option value="biberons">Biberons & Tétines</option>
-                        <option value="tirelait">Tire-lait</option>
-                        <option value="accessoires">Accessoires</option>
-                        <option value="vaisselle">Vaisselle bébé</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="price-range">Prix maximum (FCFA)</label>
-                    <select id="price-range">
-                        <option value="">Tous les prix</option>
-                        <option value="10000">Moins de 10 000</option>
-                        <option value="30000">Moins de 30 000</option>
-                        <option value="60000">Moins de 60 000</option>
-                        <option value="120000">Moins de 120 000</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="sort">Trier par</label>
-                    <select id="sort">
-                        <option value="featured">Populaires</option>
-                        <option value="price-asc">Prix croissant</option>
-                        <option value="price-desc">Prix décroissant</option>
-                        <option value="name">Nom A-Z</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+    <div class="filter-section">
+  <h3>Filtrer les produits</h3>
+  <div class="filter-options">
+    <div class="filter-group">
+      <label for="amenagement-category">Catégorie</label>
+      <select id="amenagement-category">
+        <option value="">Toutes les catégories</option>
+        <option value="berceau">Berceaux</option>
+        <option value="commode">Commodes</option>
+        <option value="couffin">Couffins</option>
+        <option value="matelas">Matelas</option>
+      </select>
 
-
-
-
-
-
-    <div class="product-grid">
-      <!-- 15 produits (Exemple avec placeholders) -->
-      <div class="product-card"> <a href="../../pages/amenagement_de_chambre/berceau1.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau 1.png" alt="Produit 1" ></a><div class="product-name">Berceau </div><div class="product-price">110.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/berceau2.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau en fer.png" alt="Produit 14"></a> <div class="product-name">Berceau en fer</div><div class="product-price">85.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/berceau3.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau 2.png" alt="Produit 2"></a><div class="product-name">Berceau en bois</div><div class="product-price">120.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/berceau4.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau 3.png" alt="Produit 3"></a><div class="product-name">Berceau en bois pliant</div><div class="product-price">100.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/commode1.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 1.png" alt="Produit 4"></a><div class="product-name">commode en paille</div><div class="product-price">105.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/commode2.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 2.png" alt="Produit 5"></a><div class="product-name">commode en aluminium</div><div class="product-price">132.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/commode3.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 3.png" alt="Produit 6"></a><div class="product-name">commode en acier</div><div class="product-price">135.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/commode4.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 4.png" alt="Produit 7"></a><div class="product-name">commode recouvert de tissu</div><div class="product-price">110.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/commode5.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 5.png" alt="Produit 8"></a><div class="product-name">mini commode</div><div class="product-price">80.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/couffin1.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/couffin 1.png" alt="Produit 9"></a><div class="product-name">couffin en bois recouvert de tissu</div><div class="product-price">30.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/couffin2.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/couffin 2.png" alt="Produit 10"></a><div class="product-name">couffin en alliage d'acier</div><div class="product-price">45.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/couffin3.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/mini couffin.png" alt="Produit 11"></a><div class="product-name">Mini couffin portable</div><div class="product-price">60.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/matelas1.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/matelas 1.png" alt="Produit 12"></a><div class="product-name">Matelas orthopédique</div><div class="product-price">24.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/matelas2.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/matelas 2.png" alt="Produit 13"></a><div class="product-name">Matelas en coton</div><div class="product-price">18.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
-      <div class="product-card"><a href="../../pages/amenagement_de_chambre/matelas3.html"><img class="product-image" src="../../assets/images/amenagement_de_chambre_images/matelas 3.png" alt="Produit 15"></a><div class="product-name">Matelas en  Polyester</div><div class="product-price">20.000 FCFA</div><button class="add-to-cart">Ajouter au panier</button></div>
+      <label for="amenagement-price">Prix maximum (FCFA)</label>
+      <select id="amenagement-price">
+        <option value="">Tous les prix</option>
+        <option value="30000">Moins de 30 000</option>
+        <option value="60000">Moins de 60 000</option>
+        <option value="120000">Moins de 120 000</option>
+        <option value="150000">Moins de 150 000</option>
+      </select>
     </div>
+
+    <div class="filter-group">
+      <label for="amenagement-sort">Trier par</label>
+      <select id="amenagement-sort">
+        <option value="featured">Populaires</option>
+        <option value="price-asc">Prix croissant</option>
+        <option value="price-desc">Prix décroissant</option>
+        <option value="name">Nom A-Z</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  <div class="product-grid">
+  <a href="../../pages/amenagement_de_chambre/berceau1.html">
+    <div class="product-card" data-category="berceau" data-price="110000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau 1.png" alt="Produit 1">
+      <div class="product-name">Berceau</div>
+      <div class="product-price">110.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/berceau2.html">
+    <div class="product-card" data-category="berceau" data-price="85000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau en fer.png" alt="Produit 14">
+      <div class="product-name">Berceau en fer</div>
+      <div class="product-price">85.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/berceau3.html">
+    <div class="product-card" data-category="berceau" data-price="120000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau 2.png" alt="Produit 2">
+      <div class="product-name">Berceau en bois</div>
+      <div class="product-price">120.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/berceau4.html">
+    <div class="product-card" data-category="berceau" data-price="100000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/berceau 3.png" alt="Produit 3">
+      <div class="product-name">Berceau en bois pliant</div>
+      <div class="product-price">100.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/commode1.html">
+    <div class="product-card" data-category="commode" data-price="105000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 1.png" alt="Produit 4">
+      <div class="product-name">Commode en paille</div>
+      <div class="product-price">105.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/commode2.html">
+    <div class="product-card" data-category="commode" data-price="132000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 2.png" alt="Produit 5">
+      <div class="product-name">Commode en aluminium</div>
+      <div class="product-price">132.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/commode3.html">
+    <div class="product-card" data-category="commode" data-price="135000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 3.png" alt="Produit 6">
+      <div class="product-name">Commode en acier</div>
+      <div class="product-price">135.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/commode4.html">
+    <div class="product-card" data-category="commode" data-price="110000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 4.png" alt="Produit 7">
+      <div class="product-name">Commode recouverte de tissu</div>
+      <div class="product-price">110.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/commode5.html">
+    <div class="product-card" data-category="commode" data-price="80000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/commode 5.png" alt="Produit 8">
+      <div class="product-name">Mini commode</div>
+      <div class="product-price">80.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/couffin1.html">
+    <div class="product-card" data-category="couffin" data-price="30000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/couffin 1.png" alt="Produit 9">
+      <div class="product-name">Couffin en bois recouvert de tissu</div>
+      <div class="product-price">30.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/couffin2.html">
+    <div class="product-card" data-category="couffin" data-price="45000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/couffin 2.png" alt="Produit 10">
+      <div class="product-name">Couffin en alliage d'acier</div>
+      <div class="product-price">45.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/couffin3.html">
+    <div class="product-card" data-category="couffin" data-price="60000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/mini couffin.png" alt="Produit 11">
+      <div class="product-name">Mini couffin portable</div>
+      <div class="product-price">60.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/matelas1.html">
+    <div class="product-card" data-category="matelas" data-price="24000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/matelas 1.png" alt="Produit 12">
+      <div class="product-name">Matelas orthopédique</div>
+      <div class="product-price">24.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/matelas2.html">
+    <div class="product-card" data-category="matelas" data-price="18000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/matelas 2.png" alt="Produit 13">
+      <div class="product-name">Matelas en coton</div>
+      <div class="product-price">18.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+
+  <a href="../../pages/amenagement_de_chambre/matelas3.html">
+    <div class="product-card" data-category="matelas" data-price="20000">
+      <img class="product-image" src="../../assets/images/amenagement_de_chambre_images/matelas 3.png" alt="Produit 15">
+      <div class="product-name">Matelas en Polyester</div>
+      <div class="product-price">20.000 FCFA</div>
+      <button class="add-to-cart">Ajouter au panier</button>
+    </div>
+  </a>
+</div>
+
   </main>
 
      <!-- Footer -->

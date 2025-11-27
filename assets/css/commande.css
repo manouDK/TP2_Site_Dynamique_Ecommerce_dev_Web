@@ -1,0 +1,58 @@
+.pay-form{
+    background-color: #f9fafb;
+    padding:2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px  rgba(0,0,0,0.8);
+}
+#labelP{
+    color: #2268ff;
+    font-family: inherit;
+    font-size:3rem ;
+    text-align: center;
+}
+
+.form-group{
+    margin-bottom:1.5 rem;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.form-group label{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    
+}
+
+.form-group input{
+    padding: 0.8rem;
+    border-radius: 6px;
+    border-color: #2268ff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: boder-color 0.3s;
+}
+
+.btn-annul{
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+
+
+}
+.btn-pay{
+    padding: 5px ;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    background-color:#2268ff ;
+
+
+
+}

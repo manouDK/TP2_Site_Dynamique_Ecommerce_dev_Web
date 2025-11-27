@@ -3,23 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>page detail couche 4</title>
-  <link rel="stylesheet" href="../../assets/css/model.css">
+  <title>BEBECONFORT</title>
+  <link rel="stylesheet" href="../../assets/css/panier.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../../assets/css/commande.css">
 </head>
-
-
-<!-- Script JavaScript pour le panier -->
-<script src="../../assets/js/cart-manager.js"></script>
-
-
-
+  <script src="../../assets/js/panier.js"></script>
 <body>
-   
-
-
   <!-- ----- HEADER ----- -->
-  <header>
+  
+
+<header>
     <div class="top-nav">
         <a href="index.html" class="logo">BÉBÉCONFORT</a>
 
@@ -60,54 +54,36 @@
 
 
 
+
 <main>
-<div class="container">
-              <!-- En-tête du produit -->
-       <div class="produit-header">
-    <!-- Image du produit -->
-    <div>
-        <img src="../../assets/images/couches_et_lingettes_images/couches4.jpg" 
-             alt="Kit vêtement bébé bleu 5 pièces" 
-             class="image-principale">
-    </div>
+   
+<div class="pay-form>">
+    <label for="titre" id="labelP"> PAYER LA COMMANDE</label>
+    <form>
 
-    <!-- Informations principales -->
-    <div class="info-principale">
-        <h1>Couche Jetable - Joylink - 3-6kg - 109 Pièces</h1>
-        <div class="prix">7 900 FCFA</div>
-        
-        <p class="description">
-            Couche Jetable Joylink de 3 à 6kg - 109 Pièces
-            <br>Les couches jetables sont de plus en plus prisées dans notre société. Et les parents ont bien compris sont importance et l'on une fois adopté. Ceci dit, pour rejoindre la course, la marque Joylink à attiré notre attention en sortant du lot.
-            <br>Grâce à son espace intérieur qui laisse l'air passer, la peau de bébé respire très bien ce qui l'empêche donc de s'irriter. 
-        </p>
-
-        <!-- Caractéristiques -->
-        <div class="caracteristiques">
-            <h3>Caractéristiques</h3>
-            <ul>
-                <li><strong>Pièces :</strong> 109 pièces</li>
-                <li><strong>Taille :</strong> 2 </li>
-                <li><strong>Poids :</strong> 3-6 kg </li>
-            </ul>
+        <div class="form-group">
+            <label for="nom"> Nom</label>
+            <input type="text" name="nom" required>
         </div>
-        <div class="detail-action-bar">
-            <input type="number" value="1" min="1" max="10" placeholder="Qté">
-                
-            <button class="btn-add-cart">
-                🧺 Ajouter au panier
-            </button>
-
-            <button class="btn-buy-now">
-                🚀 Commander Directement
-            </button>
+        <div class="form-group">
+            <label for="prenom"> Prenom</label>
+            <input type="text" name="prenom" required>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="email"> Adresse</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <button type="submit" class="btn-pay"> Valider la commande</button>
+        <button class="btn-annul"><a href="panier.html"></a> Annuler la commande</button>
+
+    </form>
+
 </div>
 
-<!-- Bouton d'achat -->
-
 </main>
+
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -127,13 +103,14 @@
         <div class="footer-column">
             <h4>Liens Utiles</h4>
             <ul>
-                <li><a href="#">Vêtements</a></li>
-                <li><a href="#">Alimentation</a></li>
-                <li><a href="#">Couches et Lingettes</a></li>
-                <li><a href="#">Chaussures</a></li>
-                <li><a href="#">Textile de Maternité</a></li>
-                <li><a href="#">Poussettes</a></li>
-                <li><a href="#">Menagement de</a></li>
+                    <li><a href="../../pages/vêtements/pageCategorieVetement.html">Vêtements</a></li>
+                    <li><a href="../../pages/accessoires/accessoires.html">Accessoires</a></li>
+                    <li><a href="../../pages/chaussures/chaussures.html">Chaussures</a></li>
+                    <li><a href="../../pages/amenagement_de_chambre/amenagement.html"> Aménagement de La chambre</a></li>
+                    <li><a href="../../pages/alimentation/alimentation.html">Alimentation</a></li>
+                    <li><a href="../../pages/couches_et_lingettes/couche_lingette.html">Couches et Lingettes</a></li>
+                    <li><a href="../../pages/textile_de_maternité/textile.html">Textile de Maternité</a></li>
+                    <li><a href="../../pages/poussettes/pouset.html">Poussettes</a></li>
             </ul>
         </div>
         <div class="footer-column">
@@ -149,12 +126,12 @@
         <div class="footer-column">
             <h4>Methode De paiement</h4>
             <div class="payment-methods">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" class="payment-logo"></a>
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="payment-logo"></a>
-                <a href="#"><img src="../../assets/images/images_index/téléchargement.png" alt="American Express" class="payment-logo"></a>
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="payment-logo"></a>
-                <a href="#"><img src="../../assets/images/images_index/mtn-mobile-money-logo.jpg" alt="Mtn Money" class="payment-logo"></a>
-                <a href="#"><img src="../../assets/images/images_index/orange-money-logo-png_seeklogo-440383.png" alt="orange money" class="payment-logo"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" class="footer-payment-logo"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="footer-payment-logo"></a>
+                <a href="#"><img src="../../assets/images/images_index/téléchargement.png" alt="American Express" class="footer-payment-logo"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="footer-payment-logo"></a>
+                <a href="#"><img src="../../assets/images/images_index/mtn-mobile-money-logo.jpg" alt="Mtn Money" class="footer-payment-logo"></a>
+                <a href="#"><img src="../../assets/images/images_index/orange-money-logo-png_seeklogo-440383.png" alt="orange money" class="footer-payment-logo"></a>
             </div>
         </div>
 

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
+  <script src="../../assets/js/panier.js"></script>
 <body>
   <!-- ----- HEADER ----- -
   
@@ -64,7 +65,7 @@
                     <th>Produit</th>
                     <th>Prix</th>
                     <th>Quantité</th>
-                    <th>Sous-total</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,22 +87,25 @@
    
         
         
-        <div class="cart-totals">
-            <h3>Total du Panier</h3>
-            <div class="totals-row">
-                <span>Sous-total</span>
-                <span>98 000 FCFA</span>
-            </div>
-            <div class="totals-row">
-                <span>Frais de livraison</span>
-                <span>5 000 FCFA</span>
-            </div>
-            <div class="totals-row total-row">
-                <span>Total</span>
-                <span>103 000 FCFA</span>
-            </div>
-        </div>
-        
+ <div class="cart-totals">
+    <h3>Total du Panier</h3>
+    <div class="totals-row">
+        <span>Sous-total</span>
+        <span id="subtotal-amount">0 FCFA</span>
+    </div>
+    <div class="totals-row" id="total-quantity-row">
+        <span>Quantité totale</span>
+        <span id="total-quantity">0 articles</span>
+    </div>
+    <div class="totals-row">
+        <span>Frais de livraison</span>
+        <span id="shipping-amount">5 000 FCFA</span>
+    </div>
+    <div class="totals-row total-row">
+        <span>Total</span>
+        <span id="total-amount">5 000 FCFA</span>
+    </div>
+</div>
         <div class="customer-note">
             <h3>Note pour la commande</h3>
             <textarea placeholder="Ajoutez une note à votre commande (optionnel)"></textarea>
