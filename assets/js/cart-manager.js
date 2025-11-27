@@ -30,6 +30,7 @@ class CartManager {
     addToCart(product) {
 
 
+
         const existingProduct = this.cart.find(item => item.name === product.name);
         
 
