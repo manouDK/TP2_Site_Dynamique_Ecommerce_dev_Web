@@ -69,12 +69,12 @@ header {
 } */
 
 .user-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
+  display: flex;              
+  align-items: center;                  
+  gap: 20px;                          
+  font-size: 14px;                     
+  color: #333;                      
+  cursor: pointer;                              
 }
 
 .user-actions div:hover {
@@ -83,7 +83,7 @@ header {
 
 .icon svg {
   width: 20px;
-  height: 20px;
+  height: 20px;  
   vertical-align: middle;
   fill: currentColor;
   margin-right: 5px;
