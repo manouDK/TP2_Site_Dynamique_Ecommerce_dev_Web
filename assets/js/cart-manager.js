@@ -28,18 +28,9 @@ class CartManager {
     // Ajouter un produit au panier
     // Ajouter un produit au panier
     addToCart(product) {
-<<<<<<< HEAD
 
         const existingProduct = this.cart.find(item => item.id === product.id);
 
-=======
-
-
-
-        const existingProduct = this.cart.find(item => item.name === product.name);
-        
-
->>>>>>> 2f68549ee0b157801785a666cc1cb38df1a830a2
         if (existingProduct) {
             existingProduct.quantity += product.quantity || 1;
         } else {
