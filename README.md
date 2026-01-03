@@ -21,7 +21,7 @@ Le site propose une expérience complète d’achat (exploration des catégories
 
 ---
 
-## 📚 Table des matières
+##  Table des matières
 
 - [Présentation du projet](#-présentation-du-projet)  
 - [Objectifs pédagogiques](#-objectifs-pédagogiques)  
@@ -41,14 +41,14 @@ Le site propose une expérience complète d’achat (exploration des catégories
 
 ---
 
-## 🍼 Présentation du projet
+##  Présentation du projet
 
 BEBECONFORT est un site de layette pour bébés qui commercialise plusieurs catégories de produits : **vêtements**, **alimentation**, **textiles de maternité**, **accessoires**, **aménagement de la chambre**, **chaussures**, **couches et lingettes**, **poussettes**, etc.  
 L’utilisateur peut parcourir les catégories, consulter des fiches détaillées de produits, ajouter des articles au panier, remplir un formulaire de commande et obtenir une confirmation visuelle de sa commande.  
 
 ---
 
-## 🎯 Objectifs pédagogiques
+## Objectifs pédagogiques
 
 Ce projet est réalisé dans le cadre du **TP 2 : “Construire un site de e‑commerce complet en HTML, CSS, JS avec les interactions côté client.”** qui est aussi une continuité du TP1 qui a fait le site statique. 
 
@@ -61,7 +61,7 @@ Objectifs principaux :
 
 ---
 
-## ✨ Fonctionnalités principales
+##  Fonctionnalités principales
  
  Les besoins fonctionnels du site sont : 
 - Page d’accueil avec :
@@ -85,7 +85,7 @@ Objectifs principaux :
 - l'interface qui satisfait l'utilisateur
 ---
 
-## 📁 Structure du projet
+##  Structure du projet
 
 À la racine du projet on a :
 
@@ -135,7 +135,7 @@ Objectifs principaux :
 
 ---
 
-## 🎨 Maquettage (UI/UX)
+## Maquettage (UI/UX)
 
 Nous avons réalisé la maquette de notre site sur **Figma** :
 
@@ -145,7 +145,7 @@ Lien Figma de la maquette :
 
 ---
 
-## 🧭 Navigation et parcours utilisateur
+## Navigation et parcours utilisateur
 
 - **Header** :
   - Logo « BEBECONFORT » cliquable vers `index.html`.  
@@ -165,7 +165,7 @@ C'est la présentation du site de ecommerce, on navige.
 
 ---
 
-## 🧷 Pages catégories et pages détail produit
+## Pages catégories et pages détail produit
 
 ### Pages catégories
 
@@ -187,7 +187,7 @@ Exemple : `pages/vêtements/pageDetailVetement1.html`
 
 ---
 
-## 🛒 Gestion du panier (`CartManager`)
+##  Gestion du panier (`CartManager`)
 
 Le cœur de la logique du panier est centralisé dans la classe `CartManager` (fichier `assets/js/cart-manager.js`).
 
@@ -231,14 +231,14 @@ Sur les pages détail produit :
 
 ---
 
-## 📝 Formulaire de commande et validation
+##  Formulaire de commande et validation
 
 Le formulaire de commande se trouve directement sur la **page panier**.
 
 IL choisi le mode de paiement dans le panier et entre ses informations. 
 ---
 
-## 📦 Simulation de l’envoi de la commande
+##  Simulation de l’envoi de la commande
 
 Le projet ne dispose **pas** de backend réel : tout est simulé côté navigateur.
 
@@ -248,7 +248,7 @@ Le projet ne dispose **pas** de backend réel : tout est simulé côté navigate
   - Une **confirmation visuelle** est affichée (message de succès, éventuellement récapitulatif). 
 ---
 
-## 🚀 Installation et lancement du projet
+##  Installation et lancement du projet
 
 1. **Cloner** le dépôt ou **télécharger le ZIP** du projet depuis GitHub.  
 2. Extraire le dossier et l’ouvrir dans votre éditeur (ex. Visual Studio Code).  
@@ -260,7 +260,7 @@ Aucun serveur backend n’est requis : un simple navigateur suffit.
 ---
 
 
-## 👥 Organisation du travail en groupe
+##  Organisation du travail en groupe
 
 Le projet BEBECONFORT a été réalisé en **travail de groupe**, avec GitHub comme plateforme de collaboration, et figma pour la maquette. Une phase d'analyse a été partiellement faire mais elle sera plus détaillée dans le TP4 car il utilise le backend réel. 
 
@@ -277,7 +277,7 @@ Le projet BEBECONFORT a été réalisé en **travail de groupe**, avec GitHub co
 
 ---
 
-## ✍️ Auteurs (équipe BEBECONFORT)
+##  Auteurs (équipe BEBECONFORT)
 
 **NOMS DES MEMBRES DU GROUPE :**
 
